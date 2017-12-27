@@ -1,0 +1,29 @@
+.container{
+	max-width: 960px;
+	background-color: white;
+	border: 3px solid black;
+	margin: 100px auto;
+}
+body{
+	background-image: url("../images/planets.png");
+}
+h1{
+	font-size: 40px;
+	text-align: center;
+	margin: 25px;
+}
+h2{
+	font-size: 35px;
+	text-align: center;
+	margin: 10px;
+}
+#start{
+	text-align: center;
+	margin:60px auto;
+}
+#startButton{
+	width: 40%;
+}
+#display{
+	margin: 50px;
+}
