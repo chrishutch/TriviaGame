@@ -2,7 +2,7 @@ $(document).ready(function() {
 	//Variables for the questions, answers, and timer
 	var timer = 30;
 	var intervalId;
-	var correctAnswer;
+	var correctAnswer = ["Mars", "13.8 billion years ago", "8 minutes", "Neutron star", "Milky Way Galaxy"];
 	var wrongAnswer;
 	var answers = {
         a1: ["Mercury", "Pluto", "Jupiter", "Mars"],
@@ -44,7 +44,8 @@ $(document).ready(function() {
 		//Question 1
       	$('#start').html('<h2>'+questionsArray[questionIndex][0]+'</h2>');
       	logArray(answersArray[answerIndex]);
-    	//$('#theAnswers').html(answersArray[answerIndex]);
+    	//$('#theAnswers').text(answersArray[answerIndex]);
+    	console.log(answersArray[answerIndex]);
 	};
 	$('#next').click(function () {
 		questionIndex++;
@@ -52,15 +53,37 @@ $(document).ready(function() {
 		startQuestion();
 
 	});
+
+	$("#answer1, #answer2, #answer3, #answer4").on("click", function(word) {
+		var word = "";
+		word = $(this).text();
+		console.log(word);
+
+		if(word == correctAnswer[answerIndex]){
+			console.log('you right');
+		}
+		else{
+			console.log('you wrong');
+		}
+
+      });
+
+
+
+
 	//Use this function to print the answers
 	function logArray(list) {
         for (var i = 0; i < list.length; i++) {
-          $('#theAnswers').append(list[i]+'<br>');
+          $('#answer1').html(list[0]+'<br>');
+          $('#answer2').html(list[1]+'<br>');
+          $('#answer3').html(list[2]+'<br>');
+          $('#answer4').html(list[3]);
           console.log(list[i]);
         }
       }
      //This functions starts the timer
 	function time(){
+		timer = 30;
 		clearInterval(intervalId);
       	intervalId = setInterval(decrement, 1000);
 	}
