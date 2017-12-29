@@ -1,8 +1,10 @@
 .container{
 	max-width: 960px;
-	background-color: white;
-	border: 3px solid black;
+	background-color: #374353;
+	border: 5px solid #FFFFFF;
 	margin: 100px auto;
+	max-height: auto;
+	padding: 25px 25px 25px 25px;
 }
 body{
 	background-image: url("../images/planets.png");
@@ -10,12 +12,19 @@ body{
 h1{
 	font-size: 40px;
 	text-align: center;
-	margin: 25px;
+	color: #FFFFFF;
 }
 h2{
 	font-size: 35px;
 	text-align: center;
 	margin: 10px;
+	color: #FFFFFF;
+}
+h3{
+	font-size: 30px;
+	text-align: center;
+	line-height: 35px;
+	color: #FFFFFF;
 }
 #start{
 	text-align: center;
