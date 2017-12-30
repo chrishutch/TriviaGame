@@ -25,6 +25,11 @@ h3{
 	text-align: center;
 	line-height: 35px;
 	color: #FFFFFF;
+	width: 50%;
+	margin-left: 25%;
+}
+#theAnswers{
+	width: 
 }
 #start{
 	text-align: center;
@@ -32,7 +37,22 @@ h3{
 }
 #startButton{
 	width: 40%;
+	background-color: #374353;
+    border: 3px solid white;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+#startButton:hover{
+	background-color: white;
+	color: #374353;
 }
 #display{
 	margin: 50px;
+}
+#answer1:hover,#answer2:hover,#answer3:hover,#answer4:hover{
+	border: 3px solid white;
 }

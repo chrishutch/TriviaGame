@@ -3,7 +3,8 @@ $(document).ready(function() {
 	var timer = 30;
 	var intervalId;
 	var correctAnswer = ["Mars", "13.8 billion years ago", "8 minutes", "Neutron star", "Milky Way Galaxy"];
-	var wrongAnswer;
+	var wrongAnswer = 0;
+	var score = 0;
 	var answers = {
         a1: ["Mercury", "Pluto", "Jupiter", "Mars"],
         a2: ["7 billion years ago", "13.8 billion years ago", "800 billion years ago", "1.2 trillion years ago"],
@@ -41,35 +42,45 @@ $(document).ready(function() {
 	function startQuestion(){
 		//Start the timer
 		time();
-		//Question 1
+		//This asks and displays the questions
       	$('#start').html('<h2>'+questionsArray[questionIndex][0]+'</h2>');
       	logArray(answersArray[answerIndex]);
-    	//$('#theAnswers').text(answersArray[answerIndex]);
+      	//Test/Debug
     	console.log(answersArray[answerIndex]);
 	};
-	$('#next').click(function () {
+	function next() {
+
 		questionIndex++;
 		answerIndex++;
 		startQuestion();
+		$("#answer1, #answer2, #answer3, #answer4").show();
 
-	});
-
+	};
+	//Checks if the user clicks on the right or wrong answer
 	$("#answer1, #answer2, #answer3, #answer4").on("click", function(word) {
+		//Grabs the string of the clicked answer
 		var word = "";
 		word = $(this).text();
+		//Test/Debug
 		console.log(word);
 
 		if(word == correctAnswer[answerIndex]){
 			console.log('you right');
+			$('#start').html('<h2>You Right!</h2>');
+			$("#answer1, #answer2, #answer3, #answer4").hide();
+			setTimeout(next, 3000);
+			stop();
+			score++;
 		}
-		else{
+		else if (word != correctAnswer[answerIndex]){
+			$('#start').html('<h2>You Wrong! The correct answer is: '+correctAnswer[answerIndex]+'</h2>');
+			$("#answer1, #answer2, #answer3, #answer4").hide();
+			stop();
 			console.log('you wrong');
+			setTimeout(next, 3000);
+			wrongAnswer++;
 		}
-
       });
-
-
-
 
 	//Use this function to print the answers
 	function logArray(list) {
@@ -85,6 +96,7 @@ $(document).ready(function() {
 	function time(){
 		timer = 30;
 		clearInterval(intervalId);
+		//Decreases timer by 1 second
       	intervalId = setInterval(decrement, 1000);
 	}
 	//This functions decreases the timer and stops it
@@ -96,11 +108,22 @@ $(document).ready(function() {
       //  Once number hits zero...
       if (timer === 0) {
         //This stops the function.
-        clearInterval(intervalId);
+       // clearInterval(intervalId);
         //Alert the user that time is up.
         console.log("Time Up!");
         $("#display").html("<h2>Time's Up!</h2>");
+        $('#start').html('<h2>You ran out of time! The correct answer is: '+correctAnswer[answerIndex]+'</h2>');
+			$("#answer1, #answer2, #answer3, #answer4").hide();
+			stop();
+			console.log('you wrong');
+			setTimeout(next, 3000);
+			wrongAnswer++;
       }
+  }
+  //Stop the timer
+    function stop() {
+    //Stops the count here and set the clock to not be running.
+    clearInterval(intervalId);
     }
 
 
