@@ -1,26 +1,37 @@
 .container{
-	max-width: 960px;
-	background-color: #374353;
+	max-width: 800px;
+	background-color: #030B16;
 	border: 5px solid #FFFFFF;
-	margin: 100px auto;
+	margin: 150px auto;
 	max-height: auto;
 	padding: 25px 25px 25px 25px;
 }
 body{
-	background-image: url("../images/planets.png");
+	background-image: url("../images/space.jpg");
 }
 h1{
-	font-size: 40px;
+	font-family: 'Monofett', cursive;
+	font-size: 90px;
 	text-align: center;
 	color: #FFFFFF;
+
 }
 h2{
+	font-family: 'Russo One', sans-serif;
 	font-size: 35px;
 	text-align: center;
 	margin: 10px;
 	color: #FFFFFF;
 }
+#game{
+	font-family: 'Shrikhand', cursive;
+	font-size: 40px;
+	text-align: center;
+	margin: 10px;
+	color: #FEDE4C;
+}
 h3{
+	font-family: 'Titillium Web', sans-serif;
 	font-size: 30px;
 	text-align: center;
 	line-height: 35px;
@@ -37,7 +48,29 @@ h3{
 }
 #startButton{
 	width: 40%;
-	background-color: #374353;
+	background-color: #5EBD18;
+    border: 3px solid white;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+}
+#startButton:hover{
+	background-color: #6096D0;
+	color: white;
+}
+#display{
+	margin: 50px;
+}
+#answer1:hover,#answer2:hover,#answer3:hover,#answer0:hover{
+	border: 3px solid white;
+	background-color: #09A870;
+}
+#reset{
+	width: 40%;
+	background-color: #C24547;
     border: 3px solid white;
     color: white;
     padding: 15px 32px;
@@ -46,13 +79,7 @@ h3{
     display: inline-block;
     font-size: 16px;
 }
-#startButton:hover{
-	background-color: white;
-	color: #374353;
-}
-#display{
-	margin: 50px;
-}
-#answer1:hover,#answer2:hover,#answer3:hover,#answer4:hover{
-	border: 3px solid white;
+#reset:hover{
+	background-color: #F5B835;
+	color: white;
 }

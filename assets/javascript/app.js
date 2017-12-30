@@ -4,6 +4,7 @@ $(document).ready(function() {
 	var intervalId;
 	var correctAnswer = ["Mars", "13.8 billion years ago", "8 minutes", "Neutron star", "Milky Way Galaxy"];
 	var wrongAnswer = 0;
+	var unanswered = 0;
 	var score = 0;
 	var answers = {
         a1: ["Mercury", "Pluto", "Jupiter", "Mars"],
@@ -50,14 +51,24 @@ $(document).ready(function() {
 	};
 	function next() {
 
-		questionIndex++;
-		answerIndex++;
-		startQuestion();
-		$("#answer1, #answer2, #answer3, #answer4").show();
+		if(questionIndex < 4){
+			questionIndex++;
+			answerIndex++;
+			startQuestion();
+			$("#answer1, #answer2, #answer3, #answer0").show();
+		}
+		else if (questionIndex === 4){
+			stop();
+			$("#answer1, #answer2, #answer3, #answer0").hide();
+			$('#display').hide();
+			$('#start').html("<h2>Your score is: "+ score+"<br>You guessed wrong: "+wrongAnswer+"<br>You didn't guess at all: "+unanswered);
+			$('#theAnswers').html("<button id='reset'>Reset Game</button>");
+		}
+
 
 	};
 	//Checks if the user clicks on the right or wrong answer
-	$("#answer1, #answer2, #answer3, #answer4").on("click", function(word) {
+	$("#answer1, #answer2, #answer3, #answer0").on("click", function(word) {
 		//Grabs the string of the clicked answer
 		var word = "";
 		word = $(this).text();
@@ -66,29 +77,27 @@ $(document).ready(function() {
 
 		if(word == correctAnswer[answerIndex]){
 			console.log('you right');
-			$('#start').html('<h2>You Right!</h2>');
-			$("#answer1, #answer2, #answer3, #answer4").hide();
+			$('#start').html("<h2>You're Right!</h2>");
+			$("#answer1, #answer2, #answer3, #answer0").hide();
 			setTimeout(next, 3000);
 			stop();
 			score++;
 		}
 		else if (word != correctAnswer[answerIndex]){
-			$('#start').html('<h2>You Wrong! The correct answer is: '+correctAnswer[answerIndex]+'</h2>');
-			$("#answer1, #answer2, #answer3, #answer4").hide();
+			$('#start').html("<h2>You're Wrong! The correct answer is: "+correctAnswer[answerIndex]+"</h2>");
+			$("#answer1, #answer2, #answer3, #answer0").hide();
 			stop();
 			console.log('you wrong');
 			setTimeout(next, 3000);
 			wrongAnswer++;
 		}
+
       });
 
 	//Use this function to print the answers
 	function logArray(list) {
         for (var i = 0; i < list.length; i++) {
-          $('#answer1').html(list[0]+'<br>');
-          $('#answer2').html(list[1]+'<br>');
-          $('#answer3').html(list[2]+'<br>');
-          $('#answer4').html(list[3]);
+          $('#answer'+i).html(list[i]+'<br>');
           console.log(list[i]);
         }
       }
@@ -107,17 +116,14 @@ $(document).ready(function() {
       $("#display").html("<h2>Time Remaining: " + timer + "</h2>");
       //  Once number hits zero...
       if (timer === 0) {
-        //This stops the function.
-       // clearInterval(intervalId);
         //Alert the user that time is up.
         console.log("Time Up!");
         $("#display").html("<h2>Time's Up!</h2>");
         $('#start').html('<h2>You ran out of time! The correct answer is: '+correctAnswer[answerIndex]+'</h2>');
-			$("#answer1, #answer2, #answer3, #answer4").hide();
-			stop();
-			console.log('you wrong');
-			setTimeout(next, 3000);
-			wrongAnswer++;
+		$("#answer1, #answer2, #answer3, #answer0").hide();
+		stop();
+		setTimeout(next, 3000);
+		unanswered++;
       }
   }
   //Stop the timer
