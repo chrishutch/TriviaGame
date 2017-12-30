@@ -14,7 +14,7 @@ $(document).ready(function() {
         a5: ["Mily Galaxy", "Pinwheel Galaxy", "Milky Way Galaxy", "Andromeda Galaxy"]
       };
 	var questions = {
-        q1: ["What's the closest planet to us?"],
+        q1: ["Which of these planets are the closest to us?"],
         q2: ["How old is the universe?"],
         q3: ["How long does it take for light to reach the Earth?"],
         q4: ["Which of these can be formed in a supernova?"],
@@ -49,19 +49,22 @@ $(document).ready(function() {
       	//Test/Debug
     	console.log(answersArray[answerIndex]);
 	};
+	//This functions moves to the next question 
+	//and moves to the score card at the end
 	function next() {
-
+		//There are 5 questions
 		if(questionIndex < 4){
 			questionIndex++;
 			answerIndex++;
 			startQuestion();
 			$("#answer1, #answer2, #answer3, #answer0").show();
 		}
+		//On the last question
 		else if (questionIndex === 4){
 			stop();
 			$("#answer1, #answer2, #answer3, #answer0").hide();
 			$('#display').hide();
-			$('#start').html("<h2>Your score is: "+ score+"<br>You guessed wrong: "+wrongAnswer+"<br>You didn't guess at all: "+unanswered);
+			$('#start').html("<h2>Your score is: "+ score+"<br>You guessed wrong: "+wrongAnswer+"<br>You didn't guess at all: "+unanswered+'</h2>');
 			$('#theAnswers').html("<button id='reset'>Reset Game</button>");
 		}
 
@@ -93,6 +96,9 @@ $(document).ready(function() {
 		}
 
       });
+	$("#reset").on("click", function(){
+		reset();
+	});
 
 	//Use this function to print the answers
 	function logArray(list) {
@@ -107,6 +113,10 @@ $(document).ready(function() {
 		clearInterval(intervalId);
 		//Decreases timer by 1 second
       	intervalId = setInterval(decrement, 1000);
+	}
+	function reset(){
+		questionIndex = 0;
+		startGame();
 	}
 	//This functions decreases the timer and stops it
     function decrement() {
