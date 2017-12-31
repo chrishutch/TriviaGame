@@ -26,13 +26,16 @@ $(document).ready(function() {
       // Array of questions and answers
       var questionsArray = [questions.q1, questions.q2, questions.q3, questions.q4, questions.q5];
       var answersArray = [answers.a1, answers.a2, answers.a3, answers.a4, answers.a5];
+      var gameBegin;
 
 	//Start game on click
 	$('#startButton').click(function(){
 		//Start game function
+		gameBegin = true;
 		startGame();
 		//Hide the start button
 		$('#startButton').hide();
+		showReset();
 	});
 
 	//Start game function
@@ -61,11 +64,12 @@ $(document).ready(function() {
 		}
 		//On the last question
 		else if (questionIndex === 4){
+			gameStart = false;
 			stop();
 			$("#answer1, #answer2, #answer3, #answer0").hide();
 			$('#display').hide();
 			$('#start').html("<h2>Your score is: "+ score+"<br>You guessed wrong: "+wrongAnswer+"<br>You didn't guess at all: "+unanswered+'</h2>');
-			$('#theAnswers').html("<button id='reset'>Reset Game</button>");
+			showReset();
 		}
 
 
@@ -98,6 +102,7 @@ $(document).ready(function() {
       });
 	$("#reset").on("click", function(){
 		reset();
+		$('#reset').hide();
 	});
 
 	//Use this function to print the answers
@@ -117,6 +122,14 @@ $(document).ready(function() {
 	function reset(){
 		questionIndex = 0;
 		startGame();
+	}
+	function showReset(){
+		if (gameBegin == true) {
+			$('#reset').hide();
+		}
+		else if (gameBegin == false){
+			$('#reset').show();
+		}
 	}
 	//This functions decreases the timer and stops it
     function decrement() {
