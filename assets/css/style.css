@@ -1,3 +1,4 @@
+/*Main Container*/
 .container{
 	max-width: 800px;
 	background-color: #030B16;
@@ -6,9 +7,11 @@
 	max-height: auto;
 	padding: 25px 25px 25px 25px;
 }
+/*Background*/
 body{
 	background-image: url("../images/space.jpg");
 }
+/*Title*/
 h1{
 	font-family: 'Monofett', cursive;
 	font-size: 90px;
@@ -16,6 +19,7 @@ h1{
 	color: #FFFFFF;
 
 }
+/*Questions*/
 h2{
 	font-family: 'Russo One', sans-serif;
 	font-size: 35px;
@@ -23,6 +27,7 @@ h2{
 	margin: 10px;
 	color: #FFFFFF;
 }
+/*Subtitle*/
 #game{
 	font-family: 'Shrikhand', cursive;
 	font-size: 40px;
@@ -30,6 +35,7 @@ h2{
 	margin: 10px;
 	color: #FEDE4C;
 }
+/*Answers*/
 h3{
 	font-family: 'Titillium Web', sans-serif;
 	font-size: 30px;
@@ -42,6 +48,11 @@ h3{
 #theAnswers{
 	width: 
 }
+#answer1:hover,#answer2:hover,#answer3:hover,#answer0:hover{
+	border: 3px solid white;
+	background-color: #09A870;
+}
+/*Start Button*/
 #start{
 	text-align: center;
 	margin:60px auto;
@@ -61,13 +72,11 @@ h3{
 	background-color: #6096D0;
 	color: white;
 }
+/*Time*/
 #display{
 	margin: 50px;
 }
-#answer1:hover,#answer2:hover,#answer3:hover,#answer0:hover{
-	border: 3px solid white;
-	background-color: #09A870;
-}
+/*Reset Button*/
 #reset{
 	width: 40%;
 	background-color: #C24547;

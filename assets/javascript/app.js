@@ -1,8 +1,9 @@
 $(document).ready(function() {
 	//Variables for the questions, answers, and timer
-	var timer = 30;
+	var timer;
 	var intervalId;
 	var correctAnswer = ["Mars", "13.8 billion years ago", "8 minutes", "Neutron star", "Milky Way Galaxy"];
+	//User's scores
 	var wrongAnswer = 0;
 	var unanswered = 0;
 	var score = 0;
@@ -37,12 +38,12 @@ $(document).ready(function() {
 		$('#startButton').hide();
 		showReset();
 	});
-
 	//Start game function
 	function startGame() {
 		console.log("Game Started!");
 		startQuestion();
 	};
+	//Starts the first question
 	function startQuestion(){
 		//Start the timer
 		time();
@@ -71,8 +72,6 @@ $(document).ready(function() {
 			$('#start').html("<h2>Your score is: "+ score+"<br>You guessed wrong: "+wrongAnswer+"<br>You didn't guess at all: "+unanswered+'</h2>');
 			showReset();
 		}
-
-
 	};
 	//Checks if the user clicks on the right or wrong answer
 	$("#answer1, #answer2, #answer3, #answer0").on("click", function(word) {
@@ -81,7 +80,7 @@ $(document).ready(function() {
 		word = $(this).text();
 		//Test/Debug
 		console.log(word);
-
+		//Check if the correct answer and prints correct answer
 		if(word == correctAnswer[answerIndex]){
 			console.log('you right');
 			$('#start').html("<h2>You're Right!</h2>");
@@ -90,6 +89,7 @@ $(document).ready(function() {
 			stop();
 			score++;
 		}
+		//Checks if the wrong answer is selected
 		else if (word != correctAnswer[answerIndex]){
 			$('#start').html("<h2>You're Wrong! The correct answer is: "+correctAnswer[answerIndex]+"</h2>");
 			$("#answer1, #answer2, #answer3, #answer0").hide();
@@ -98,13 +98,12 @@ $(document).ready(function() {
 			setTimeout(next, 3000);
 			wrongAnswer++;
 		}
-
       });
+	//Reset button action
 	$("#reset").on("click", function(){
 		reset();
 		$('#reset').hide();
 	});
-
 	//Use this function to print the answers
 	function logArray(list) {
         for (var i = 0; i < list.length; i++) {
@@ -114,6 +113,7 @@ $(document).ready(function() {
       }
      //This functions starts the timer
 	function time(){
+		//Set timer to 30 seconds
 		timer = 30;
 		clearInterval(intervalId);
 		//Decreases timer by 1 second
@@ -157,15 +157,10 @@ $(document).ready(function() {
 		setTimeout(next, 3000);
 		unanswered++;
       }
-  }
-  //Stop the timer
+  	}
+  	//Stop the timer
     function stop() {
-    //Stops the count here and set the clock to not be running.
-    clearInterval(intervalId);
+    	//Stops the count here and set the clock to not be running.
+    	clearInterval(intervalId);
     }
-
-
-
-
-
 });
