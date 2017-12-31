@@ -27,7 +27,7 @@ $(document).ready(function() {
       var questionsArray = [questions.q1, questions.q2, questions.q3, questions.q4, questions.q5];
       var answersArray = [answers.a1, answers.a2, answers.a3, answers.a4, answers.a5];
       var gameBegin;
-
+      $('#reset').hide();
 	//Start game on click
 	$('#startButton').click(function(){
 		//Start game function
@@ -64,7 +64,7 @@ $(document).ready(function() {
 		}
 		//On the last question
 		else if (questionIndex === 4){
-			gameStart = false;
+			gameBegin = false;
 			stop();
 			$("#answer1, #answer2, #answer3, #answer0").hide();
 			$('#display').hide();
@@ -119,10 +119,19 @@ $(document).ready(function() {
 		//Decreases timer by 1 second
       	intervalId = setInterval(decrement, 1000);
 	}
+	//Resets game to beginning
 	function reset(){
 		questionIndex = 0;
+		answerIndex = 0;
+		$("#answer1, #answer2, #answer3, #answer0").show();
+		$('#display').show();
+		time();
+		wrongAnswer = 0;
+		unanswered = 0;
+		score = 0;
 		startGame();
 	}
+	//Hides or show reset button
 	function showReset(){
 		if (gameBegin == true) {
 			$('#reset').hide();
